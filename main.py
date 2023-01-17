@@ -2,6 +2,8 @@ import cmath
 import numpy as np
 from numpy import linalg as LA
 
+
+
 def MatrizTridiagonal(Principal, Secundaria):
   # Length da array diagonal
   N = len(Principal)
@@ -55,3 +57,6 @@ if __name__ == '__main__':
         Probabilidade = Componente * np.conjugate(Componente)
         Dados.write(f"{Probabilidade.real} ")
       Dados.write("\n")
+
+def function():
+    return
