@@ -17,7 +17,6 @@ def MatrizTridiagonal(Principal, Secundaria):
   return Matriz
 
 
-
 if __name__ == '__main__':
   NumerodeElementos = 4
   SitioInicial = 0
@@ -57,5 +56,3 @@ if __name__ == '__main__':
         Probabilidade = Componente * np.conjugate(Componente)
         Dados.write(f"{Probabilidade.real} ")
       Dados.write("\n")
-
-#
