@@ -2,7 +2,6 @@ import cmath
 import numpy as np
 from numpy import linalg as LA
 
-
 def MatrizTridiagonal(Principal, Secundaria):
   # Length da array diagonal
   N = len(Principal)
