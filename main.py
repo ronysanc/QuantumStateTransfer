@@ -69,6 +69,8 @@ def Main(gmin):
     plt.show()'''
     return maxvalue
 
+# Laço de repetição que escreve a probabilidade máxima do último nível variando o hopping mínimo
+
 ###############
 with open("HoppingVariando.dat", "w") as Dados:
     for hopping in np.arange(gmin, 1.0, 0.05):
