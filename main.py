@@ -32,7 +32,6 @@ def MatrizTridiagonal(Principal, Secundaria):
   return Matriz
 
 # Função Principal
-
 def Main(gmin):
     DiagonalPrincipal = [0.0 for i in range(n)] # <-- Define os elementos da Diagonal Principal
     DiagonalSecundaria = [
@@ -47,7 +46,7 @@ def Main(gmin):
     psi0[0] = 1
 
     # Definir o tempo e número de passos
-    t_list = np.linspace(0, t_total, t_total*20)
+    t_list = np.linspace(0, t_total, t_total*2)
 
     # Efetuar a evolução temporal dos estados
     psi_t = time_evolution(H, psi0, t_list)
@@ -56,21 +55,25 @@ def Main(gmin):
     prob = np.abs(psi_t)**2
 
     # Armazenar a probabilidade x tempo de cada estado em um arquivo .dat
-    #np.savetxt("prob_time.dat", np.hstack((t_list[:, np.newaxis], prob)))
+    np.savetxt("prob_time.dat", np.hstack((t_list[:, np.newaxis], prob)))
+
     maxvalue = np.amax(prob[:,n-1]) # <-- Probabilidade máxima no último estado
+    
+    # Plotar a probabilidade x tempo de cada estado
+    '''for i in range(n):
+        if i == 0 or i==n-1: # <-- Condicional para plotar apenas os estados 1 e n
+            plt.plot(t_list, prob[:, i], label="Estado {}".format(i+1))
+    plt.xlabel("Tempo")
+    plt.ylabel("Probabilidade")
+    plt.legend()
+    plt.show()'''
     return maxvalue
+
+###############
 with open("HoppingVariando.dat", "w") as Dados:
     for hopping in np.arange(gmin, 1.0, 0.05):
         valor = Main(hopping)
         Dados.write(f'{hopping:.2f} {valor}\n')
+###############
 
-'''
-# Plotar a probabilidade x tempo de cada estado
-for i in range(n):
-    if i == 0 or i==n-1: # <-- Condicional para plotar apenas os estados 1 e n
-        plt.plot(t_list, prob[:, i], label="Estado {}".format(i+1))
-plt.xlabel("Tempo")
-plt.ylabel("Probabilidade")
-plt.legend()
-plt.show()
-'''
+#Main(gmin) # < -- Chama a função main 1x (para plotar o gráfico Prob x Tempo)
